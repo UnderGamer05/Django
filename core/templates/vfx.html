@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+{% block title %}vfx{% endblock title %}
+
+{% block body %}
+<h2 class="fw-light text-center my-4">Explore Our Latest vfx</h2>
+<p class="fw-light text-center my-2">Free vfx images for Thumbnails</p>
+
+{% for img in imgs %}
+    {% if img.img_type == "VFX" %}
+        <div class="card my-5 p-3">
+            <p class="fw-light p-2">{{ img.id }} • {{ img.img_name }}</p>
+            <div class="card text-bg-dark border-primary">
+                <img src="{{ img.img.url }}" class="card-img" alt="Background-Img" oncontextmenu="return false;">
+                <div class="card-img-overlay align-items-center">
+                    <h6 class="card-title m-2 fw-light">Ap Assets</h6>
+                </div>
+            </div>
+            <div class="d-grid mt-2">
+                <a href="{% url 'download_img' img.id %}" class="btn btn-primary" type="button">Download</a>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+{% endblock body %}
